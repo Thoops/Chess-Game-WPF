@@ -1,0 +1,296 @@
+﻿<UserControl x:Class="ChessApp.ChessBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessApp"
+             xmlns:control="clr-namespace:ChessApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ContextMenu x:Key="ChoiceMenu">
+            <MenuItem x:Name="Queen" Header="Queen" Click="MenuItem_Click"/>
+            <MenuItem x:Name="Rook" Header="Rook" />
+            <Separator />
+            <MenuItem x:Name="Bishop" Header="Bishop" />
+            <MenuItem x:Name="Knight" Header="Knight" />
+        </ContextMenu>
+        <control:WhiteRook x:Key="NewWhiteRook" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:WhiteQueen x:Key="NewWhiteQueen" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:WhiteBishop x:Key="NewWhiteBishop" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:WhiteKnight x:Key="NewWhiteKnight" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:WhitePawn x:Key="NewWhitePawn" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:WhiteKing x:Key="NewWhiteKing" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:BlackRook x:Key="NewBlackRook" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:BlackQueen x:Key="NewBlackQueen" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:BlackBishop x:Key="NewBlackBishop" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:BlackKnight x:Key="NewBlackKnight" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:BlackPawn x:Key="NewBlackPawn" 
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+        <control:BlackKing x:Key="NewBlackKing"
+                                   Grid.Row="{Binding Row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+    </UserControl.Resources>
+    <Grid x:Name="Board">
+        <Grid x:Name="LocationGrid" Grid.Column="1" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" Width="400" Height="400">
+            <!--#region Column and Row Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+
+            <!--#region Squares-->
+            <Border x:Name="a1" Grid.Row="7" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="a2" Grid.Row="6" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="a3" Grid.Row="5" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="a4" Grid.Row="4" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="a5" Grid.Row="3" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="a6" Grid.Row="2" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="a7" Grid.Row="1" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="a8" Grid.Row="0" Grid.Column="0" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+
+            <Border x:Name="b1" Grid.Row="7" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="b2" Grid.Row="6" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="b3" Grid.Row="5" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="b4" Grid.Row="4" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="b5" Grid.Row="3" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="b6" Grid.Row="2" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="b7" Grid.Row="1" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="b8" Grid.Row="0" Grid.Column="1" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+
+            <Border x:Name="c1" Grid.Row="7" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="c2" Grid.Row="6" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="c3" Grid.Row="5" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="c4" Grid.Row="4" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="c5" Grid.Row="3" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="c6" Grid.Row="2" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="c7" Grid.Row="1" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="c8" Grid.Row="0" Grid.Column="2" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+
+            <Border x:Name="d1" Grid.Row="7" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="d2" Grid.Row="6" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="d3" Grid.Row="5" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="d4" Grid.Row="4" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="d5" Grid.Row="3" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="d6" Grid.Row="2" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="d7" Grid.Row="1" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="d8" Grid.Row="0" Grid.Column="3" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+
+            <Border x:Name="e1" Grid.Row="7" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="e2" Grid.Row="6" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="e3" Grid.Row="5" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="e4" Grid.Row="4" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="e5" Grid.Row="3" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="e6" Grid.Row="2" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="e7" Grid.Row="1" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="e8" Grid.Row="0" Grid.Column="4" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+
+            <Border x:Name="f1" Grid.Row="7" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="f2" Grid.Row="6" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="f3" Grid.Row="5" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="f4" Grid.Row="4" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="f5" Grid.Row="3" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="f6" Grid.Row="2" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="f7" Grid.Row="1" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="f8" Grid.Row="0" Grid.Column="5" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+
+            <Border x:Name="g1" Grid.Row="7" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="g2" Grid.Row="6" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="g3" Grid.Row="5" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="g4" Grid.Row="4" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="g5" Grid.Row="3" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="g6" Grid.Row="2" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="g7" Grid.Row="1" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="g8" Grid.Row="0" Grid.Column="6" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+
+            <Border x:Name="h1" Grid.Row="7" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="h2" Grid.Row="6" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="h3" Grid.Row="5" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="h4" Grid.Row="4" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="h5" Grid.Row="3" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="h6" Grid.Row="2" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <Border x:Name="h7" Grid.Row="1" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="NavajoWhite"/>
+            <Border x:Name="h8" Grid.Row="0" Grid.Column="7" PreviewMouseLeftButtonDown="Space_MouseLeftButtonDown" Background="SaddleBrown"/>
+            <!--#endregion-->
+            
+            
+                        
+            <!--#region Pieces-->
+
+            <control:WhiteRook x:Name="whiteRookA" 
+                                   Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteKnight x:Name="whiteKnightB" 
+                                     Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteBishop x:Name="whiteBishopC" 
+                                     Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteQueen x:Name="whiteQueen" 
+                                   Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteKing x:Name="whiteKing" 
+                                   Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteBishop  x:Name="whiteBishopF" 
+                                      Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Grid.Column="{Binding Column, FallbackValue=5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteKnight x:Name="whiteKnightG" 
+                                     Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhiteRook x:Name="whiteRookH" 
+                                   Grid.Row="{Binding Row, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:WhitePawn x:Name="whitePawn1" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn2" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn3" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn4" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn5" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn6" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn7" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:WhitePawn x:Name="whitePawn8" Grid.Row="{Binding Row, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:BlackRook x:Name="blackRookA" Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackKnight x:Name="blackKnightB" Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackBishop x:Name="blackBishopC" Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackQueen x:Name="blackQueen" 
+                                   Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackKing x:Name="blackKing" 
+                                   Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackBishop x:Name="blackBishopF" 
+                                     Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackKnight x:Name="blackKnightG" 
+                                     Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Grid.Column="{Binding Column, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackRook x:Name="blackRookH" Grid.Row="{Binding Row, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <control:BlackPawn x:Name="blackPawn1" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn2" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn3" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn4" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn5" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn6" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn7" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+            <control:BlackPawn x:Name="blackPawn8" Grid.Row="{Binding Row, FallbackValue=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   Grid.Column="{Binding Column, FallbackValue=7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MouseLeftButtonDown="Piece_MouseLeftButtonDown"/>
+
+            <!--#endregion-->
+        </Grid>
+    </Grid>
+</UserControl>
